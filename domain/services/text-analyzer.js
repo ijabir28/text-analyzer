@@ -6,4 +6,12 @@ function countOfWords(text) {
     return text.trim().split(/\s+/).length;
 }
 
-module.exports = { countOfWords };
+function countOfCharacters(text) {
+    if(text.trim() === "") {
+        return 0;
+    }
+
+    return text.trim().length;
+}
+
+module.exports = { countOfWords, countOfCharacters };
