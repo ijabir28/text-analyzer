@@ -10,4 +10,9 @@ describe("countOfWords", () => {
         const result = countOfWords("hello");
         expect(result).toBe(1);
     });
+
+    it("should return correct count of words", () => {
+        const result = countOfWords("The quick brown fox jumps over the lazy dog. The lazy dog slept in the sun.");
+        expect(result).toBe(16);
+    });
 });
