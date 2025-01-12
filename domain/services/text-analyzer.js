@@ -22,4 +22,12 @@ function countOfSentences(text) {
     return text.trim().split(/[.!?]/).length - 1;
 }
 
-module.exports = { countOfWords, countOfCharacters, countOfSentences };
+function countOfParagraphs(text) {
+    if(text.trim() === "") {
+        return 0;
+    }
+
+    return text.trim().split(/\n+/).length;
+}
+
+module.exports = { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs };

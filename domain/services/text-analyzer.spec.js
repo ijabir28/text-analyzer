@@ -1,4 +1,4 @@
-const { countOfWords, countOfCharacters, countOfSentences } = require("./text-analyzer");
+const { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs } = require("./text-analyzer");
 
 describe("countOfWords", () => {
     it("should return 0 for an empty string", () => {
@@ -47,6 +47,23 @@ describe("countOfSentences", () => {
 
     it("should return correct count of sentences", () => {
         const result = countOfSentences("The quick brown fox jumps over the lazy dog. The lazy dog slept in the sun.");
+        expect(result).toBe(2);
+    });
+});
+
+describe("countOfParagraphs,", () => {
+    it("should return 0 for an empty string", () => {
+        const result = countOfParagraphs("");
+        expect(result).toBe(0);
+    });
+
+    it("should return 1 for a single paragraph", () => {
+        const result = countOfParagraphs("The quick brown fox jumps over the lazy dog.");
+        expect(result).toBe(1);
+    });
+
+    it("should return correct count of paragraphs", () => {
+        const result = countOfParagraphs("The quick brown fox jumps over the lazy dog.\nThe lazy dog slept in the sun.");
         expect(result).toBe(2);
     });
 });
