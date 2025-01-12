@@ -14,4 +14,12 @@ function countOfCharacters(text) {
     return text.trim().length;
 }
 
-module.exports = { countOfWords, countOfCharacters };
+function countOfSentences(text) {
+    if(text.trim() === "") {
+        return 0;
+    }
+
+    return text.trim().split(/[.!?]/).length - 1;
+}
+
+module.exports = { countOfWords, countOfCharacters, countOfSentences };
