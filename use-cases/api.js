@@ -5,6 +5,8 @@ const { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs, lo
 function createApi(dependencies = {}) {
     const api = express();
 
+    api.use(express.json());
+
     api.post('/number-of-words', (req, res) => {
         const { text } = req.body;
 
