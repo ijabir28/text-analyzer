@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs } = require('../domain/services/text-analyzer');
+const { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs, longestWord } = require('../domain/services/text-analyzer');
 
 function createApi(dependencies = {}) {
     const api = express();
@@ -30,6 +30,13 @@ function createApi(dependencies = {}) {
         const { text } = req.body;
 
         const result = countOfParagraphs(text);
+        res.json({ result });
+    });
+
+    api.post('/longest-word', (req, res) => {
+        const { text } = req.body;
+
+        const result = longestWord(text);
         res.json({ result });
     });
 
