@@ -32,7 +32,7 @@ function countOfParagraphs(text) {
 
 function longestWord(text) {
     const paragraphs = text.trim().split(/\n+/);
-    const words = paragraphs[0].trim().split(/\s+/); //Considering the first paragraph only
+    const words = paragraphs[0].trim().replace(/[.,!?;:]/g, '').split(/\s+/); // Considering the first paragraph only and removing punctuation
     let longestWord = '';
 
     for (const word of words) {
