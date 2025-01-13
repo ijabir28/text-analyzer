@@ -30,4 +30,18 @@ function countOfParagraphs(text) {
     return text.trim().split(/\n+/).length;
 }
 
-module.exports = { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs };
+function longestWord(text) {
+    const paragraphs = text.trim().split(/\n+/);
+    const words = paragraphs[0].trim().split(/\s+/); //Considering the first paragraph only
+    let longestWord = '';
+
+    for (const word of words) {
+        if (word.length > longestWord.length) {
+            longestWord = word;
+        }
+    }
+
+    return longestWord; //returning the first longest word in the first paragraph
+}
+
+module.exports = { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs, longestWord };

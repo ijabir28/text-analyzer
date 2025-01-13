@@ -1,4 +1,4 @@
-const { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs } = require("./text-analyzer");
+const { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs, longestWord } = require("./text-analyzer");
 
 describe("countOfWords", () => {
     it("should return 0 for an empty string", () => {
@@ -65,5 +65,22 @@ describe("countOfParagraphs,", () => {
     it("should return correct count of paragraphs", () => {
         const result = countOfParagraphs("The quick brown fox jumps over the lazy dog.\nThe lazy dog slept in the sun.");
         expect(result).toBe(2);
+    });
+});
+
+describe("longestWord", () => {
+    it("should return empty string for an empty string", () => {
+        const result = longestWord("");
+        expect(result).toBe("");
+    });
+
+    it("should return the only word for a single word", () => {
+        const result = longestWord("hello");
+        expect(result).toBe("hello");
+    });
+
+    it("should return the longest word", () => {
+        const result = longestWord("The quick brown fox jumps over the lazy dog. The lazy dog slept in the sun.");
+        expect(result).toBe("quick");
     });
 });
