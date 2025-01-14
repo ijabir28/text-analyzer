@@ -15,7 +15,12 @@ function createApi(dependencies = {}) {
     api.post('/login', async (req, res) => {
         const { email, password } = req.body;
 
-        const userToken = await authService.login(email, password);
+        const { error, userToken } = await authService.login(email, password);
+
+        if (error) {
+            return res.status(400).json({ error });
+        }
+
         res.json({ userToken });
 
     });
