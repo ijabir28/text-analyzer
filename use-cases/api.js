@@ -28,36 +28,36 @@ function createApi(dependencies = {}) {
     api.post('/number-of-words', authService.authenticate, (req, res) => {
         const { text } = req.body;
 
-        const result = countOfWords(text);
-        res.json({ numberOfWords: result });
+        const numberOfWords = countOfWords(text);
+        res.json({ numberOfWords });
     });
 
     api.post('/number-of-characters', authService.authenticate, (req, res) => {
         const { text } = req.body;
 
-        const result = countOfCharacters(text);
-        res.json({ numberOfCharacters: result });
+        const numberOfCharacters = countOfCharacters(text);
+        res.json({ numberOfCharacters });
     });
 
     api.post('/number-of-sentences', authService.authenticate, (req, res) => {
         const { text } = req.body;
 
-        const result = countOfSentences(text);
-        res.json({ numberOfSentences: result });
+        const numberOfSentences = countOfSentences(text);
+        res.json({ numberOfSentences });
     });
 
     api.post('/number-of-paragraphs', authService.authenticate, (req, res) => {
         const { text } = req.body;
 
-        const result = countOfParagraphs(text);
-        res.json({ numberOfParagraphs: result });
+        const numberOfParagraphs = countOfParagraphs(text);
+        res.json({ numberOfParagraphs });
     });
 
     api.post('/longest-word', authService.authenticate, (req, res) => {
         const { text } = req.body;
 
-        const result = longestWord(text);
-        res.json({ longestWord: result });
+        const longestWord = longestWord(text);
+        res.json({ longestWord });
     });
 
     return api;
