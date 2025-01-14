@@ -1,11 +1,11 @@
 const { createApi } = require('./use-cases/api');
-const { createDB } = require('./use-cases/db');
+const { createDBService } = require('./use-cases/db');
 
 const PORT = 3000;
 
-const db = createDB();
+const DBService = createDBService();
 
-const api = createApi({ db });
+const api = createApi({ DBService });
 
 api.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

@@ -2,10 +2,23 @@ const express = require('express');
 
 const { countOfWords, countOfCharacters, countOfSentences, countOfParagraphs, longestWord } = require('../domain/services/text-analyzer');
 
+const { createAuthService } = require('./auth');
+
 function createApi(dependencies = {}) {
+    const { DBService } = dependencies;
+    const authService = createAuthService({ DBService });
+
     const api = express();
 
     api.use(express.json());
+
+    api.post('/login', async (req, res) => {
+        const { email, password } = req.body;
+
+        const userToken = await authService.login(email, password);
+        res.json({ userToken });
+
+    });
 
     api.post('/number-of-words', (req, res) => {
         const { text } = req.body;

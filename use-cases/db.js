@@ -1,7 +1,7 @@
 
-function createDB() {
+function createDBService() {
 }
 
 module.exports = {
-    createDB
+    createDBService
 };
