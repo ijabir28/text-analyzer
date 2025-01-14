@@ -15,9 +15,14 @@ function createDBService() {
         return userTokens.updateOne({ _id: userId }, { $set: { userToken } }, { upsert: true });
     }
 
+    function getUserByToken(userToken) {
+        return userTokens.findOne({ userToken });
+    }
+
     return {
         getUserByEmail,
-        createUserToken
+        createUserToken,
+        getUserByToken,
     }
 }
 

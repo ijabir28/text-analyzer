@@ -19,6 +19,18 @@ function createAuthService(dependencies) {
                 }
             }
 
+        },
+
+        authenticate: async (req, res, next) => {
+            
+            const user = await DBService.getUserByToken(req.headers.usertoken);
+
+            if (user) {
+                req.user = user;
+                return next();
+            } else {
+                res.status(401).json({ error: { code: "UNAUTHORIZED", message: "Unauthorized" } });
+            }
         }
     };
 }
