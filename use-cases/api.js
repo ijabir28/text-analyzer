@@ -44,6 +44,19 @@ function createApi(dependencies = {}) {
 
     });
 
+    api.get('/logout', authService.authenticate, async (req, res) => {
+        logger.info('Logging out');
+
+        const { error } = await authService.logout(req.user._id);
+
+        if (error) {
+            logger.error(`Error while logging out: ${error.message}`);
+            return res.status(400).json({ error });
+        }
+
+        res.json({ message: 'Logged out successfully' });
+    });
+
     api.post('/number-of-words', authService.authenticate, (req, res) => {
         logger.info('Counting number of words');
         const { text } = req.body;

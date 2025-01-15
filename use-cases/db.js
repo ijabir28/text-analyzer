@@ -25,6 +25,22 @@ async function createDBService() {
         return userTokens.findOne({ userToken });
     }
 
+    async function deleteUserToken(userId) {
+        const dbResponse = await userTokens.deleteOne({ _id: userId });
+
+        if(!dbResponse.deletedCount) {
+            return {
+                error: { code: "LOGOUT_ERROR", message: "Error while logging out" }
+            }
+        }
+
+        else {
+            return {
+                success: true
+            }
+        }
+    }
+
     async function storeText(userId, text) {
         const storedText = await texts.insertOne({ userId, text });
         if (!storedText.acknowledged) {
@@ -61,6 +77,7 @@ async function createDBService() {
         createUser,
         createUserToken,
         getUserByToken,
+        deleteUserToken,
         storeText,
         getTextByUserId,
         getTextById,

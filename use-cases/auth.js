@@ -21,6 +21,10 @@ function createAuthService(dependencies) {
 
         },
 
+        logout: async (userId) => {
+            return DBService.deleteUserToken(userId);
+        },
+
         authenticate: async (req, res, next) => {
             
             const user = await DBService.getUserByToken(req.headers.usertoken);
