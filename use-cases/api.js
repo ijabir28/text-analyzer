@@ -67,6 +67,44 @@ function createApi(dependencies = {}) {
         res.json({ longestWord });
     });
 
+    api.post('/store-text', authService.authenticate, async (req, res) => {
+        logger.info('Storing text...');
+        const { text } = req.body;
+
+        const { textId, error } = await DBService.storeText(req.user._id, text);
+
+        if (error) {
+            logger.error(`Error while storing text: ${error.message}`);
+            return res.status(400).json({ error });
+        }
+
+        res.json({ textId });
+    });
+
+    api.get('/get-texts', authService.authenticate, async (req, res) => {
+        logger.info('Getting texts...');
+
+        const texts = await DBService.getTextByUserId(req.user._id);
+
+        res.json({ texts });
+
+    });
+
+    api.get('/get-text-by-id/:textId', authService.authenticate, async (req, res) => {
+        logger.info('Getting text by id...');
+
+        const textId = req.params.textId;
+
+        const { text, error } = await DBService.getTextById(req.user._id, textId);
+
+        if (error) {
+            logger.error(`Error while getting text by id: ${error.message}`);
+            return res.status(404).json({ error });
+        }
+
+        res.json({ text });
+    });
+
     return api;
 }
 
