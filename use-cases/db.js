@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-function createDBService() {
+async function createDBService() {
     const client = new MongoClient(process.env.MONGO_URI);
     const database = client.db('text-analyzer');
 
