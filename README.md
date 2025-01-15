@@ -14,3 +14,5 @@ To install the project, follow these steps:
     docker compose up --build
 
 3. The project will be available at `http://localhost:3000`
+
+For more details, refer to the API documentation: http://localhost:3000/api-docs
