@@ -13,6 +13,10 @@ async function createDBService() {
         return users.findOne({ email });
     }
 
+    function createUser({ email, password }) {
+        return users.insertOne({ email, password });
+    }
+
     function createUserToken({ userId, userToken }) {
         return userTokens.updateOne({ _id: userId }, { $set: { userToken } }, { upsert: true });
     }
@@ -54,6 +58,7 @@ async function createDBService() {
 
     return {
         getUserByEmail,
+        createUser,
         createUserToken,
         getUserByToken,
         storeText,

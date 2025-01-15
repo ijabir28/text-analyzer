@@ -12,6 +12,23 @@ function createApi(dependencies = {}) {
 
     api.use(express.json());
 
+    api.post('/signup', async (req, res) => {
+        logger.info('Signing up');
+        const { email, password } = req.body;
+
+        const existingUser = await DBService.getUserByEmail(email);
+        if (existingUser) {
+            return res.status(400).json({ error: { code: "USER_EXISTS", message: "User already exists" } });
+        }
+
+        const user = await DBService.createUser({ email, password });
+
+        if (user) {
+            const { userToken } = await authService.login(email, password);
+            res.json({ userToken });
+        }
+    });
+
     api.post('/login', async (req, res) => {
         logger.info('Logging in');
         const { email, password } = req.body;
